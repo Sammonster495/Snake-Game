@@ -8,9 +8,16 @@ Food::Food(int blockSize) : blockSize(blockSize) {
 }
 
 void Food::spawn(int screenWidth, int screenHeight) {
-    rect.x = (rand() % (screenWidth / blockSize)) * blockSize;
-    rect.y = (rand() % (screenHeight / blockSize)) * blockSize;
+    // Define grid constraints matching `drawGrid` (50-pixel margin on all sides)
+    int xMin = 50 / blockSize;
+    int xMax = (screenWidth - 50) / blockSize - 1;
+    rect.x = (rand() % (xMax - xMin + 1) + xMin) * blockSize;
+
+    int yMin = 70 / blockSize;
+    int yMax = (screenHeight - 20) / blockSize - 1;
+    rect.y = (rand() % (yMax - yMin + 1) + yMin) * blockSize;
 }
+
 
 void Food::render(SDL_Renderer* renderer) {
     SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);  // Red color for food

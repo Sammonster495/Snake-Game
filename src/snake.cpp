@@ -53,6 +53,17 @@ void Snake::grow() {
     growing = true;  // Set flag so the snake doesn't remove its tail in the next move
 }
 
+void Snake::reset() {
+    // Clear the snake's body
+    snakeBody.clear();
+
+    // Initialize snake with a single block (head) at a starting position
+    snakeBody.push_back({100, 100, blockSize, blockSize});
+
+    // Reset the direction to RIGHT
+    direction = Direction::RIGHT;
+}
+
 void Snake::render(SDL_Renderer* renderer) {
     // Draw the border around the entire snake body
 
@@ -84,7 +95,7 @@ bool Snake::checkCollision() {
     }
 
     // Check if the snake hits the window boundaries (assume a window size of 1400x1000)
-    if (head.x < 0 || head.y < 0 || head.x >= 1200 || head.y >= 750) {
+    if (head.x < 49 || head.y < 69 || head.x > 1149 || head.y > 729) {
         return true;  // Snake hit a boundary
     }
 

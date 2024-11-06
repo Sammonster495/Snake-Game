@@ -20,6 +20,7 @@ public:
     void render(SDL_Renderer* renderer);  // Render the snake
     void setDirection(Direction dir);  // Set the snake's movement direction
     bool checkCollision();  // Check if snake has collided with itself or boundaries
+    void reset();  // Reset the snake's position
     SDL_Rect getHead() const { return snakeBody.front(); };  // Get the snake's head for collision checks
 
 private:
